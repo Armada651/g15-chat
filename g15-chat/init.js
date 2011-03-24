@@ -1,4 +1,4 @@
-plugin.id = "chat-g";
+plugin.id = "gfifteen-chat";
 
 var LcdLib;
 var LcdInit;
@@ -17,7 +17,7 @@ function _init(glob) {
 
 plugin.enable =
 function _enable() {
-	// Open the Chat-G15 library
+	// Open the G15-Chat library
 	var path = decodeURI(plugin.cwd.substr(8)) + "g15-chat.dll"; //Substr to remove file:///
 	Components.utils.import("resource://gre/modules/ctypes.jsm");
 	client.display("Opening library: " + path);
