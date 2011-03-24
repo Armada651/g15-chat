@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\LCDUI">
+      <UniqueIdentifier>{6971dff5-be18-4f99-81bd-dd2cb1d353db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LCDUI">
+      <UniqueIdentifier>{dcacc83c-3417-4ed7-8a6f-52a2e3e63835}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lglcd.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lglcd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="g15-chat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDBitmap.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDCollection.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDColorProgressBar.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDColorText.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDConnection.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDGfxBase.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDGfxColor.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDGfxMono.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDIcon.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDOutput.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDPage.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDPaginateText.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDPopup.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDProgressBar.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDScrollingText.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDSkinnedProgressBar.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDStreamingText.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDText.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDUI.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDAnimatedBitmap.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LCDUI\LCDBase.h">
+      <Filter>Header Files\LCDUI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="g15-chat.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="init.js">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LCDUI\LCDGfxMono.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDIcon.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDOutput.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDPage.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDPaginateText.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDPopup.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDProgressBar.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDScrollingText.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDSkinnedProgressBar.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDStreamingText.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDText.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDAnimatedBitmap.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDBase.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDBitmap.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDCollection.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDColorProgressBar.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDColorText.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDConnection.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDGfxBase.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LCDUI\LCDGfxColor.cpp">
+      <Filter>Source Files\LCDUI</Filter>
+    </ClCompile>
+    <ClCompile Include="g15-chat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

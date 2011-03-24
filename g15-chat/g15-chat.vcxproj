@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FA4C9523-8D79-45A3-8532-524B3D49E34C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>g15chat</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;G15CHAT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>Default</CompileAs>
+      <AdditionalIncludeDirectories>LCDUI</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>g15-chat.def</ModuleDefinitionFile>
+      <AdditionalDependencies>lglcd.lib;gdiplus.lib;Msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;G15CHAT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>Default</CompileAs>
+      <AdditionalIncludeDirectories>LCDUI</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>g15-chat.def</ModuleDefinitionFile>
+      <AdditionalDependencies>lglcd.lib;gdiplus.lib;Msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(ProjectDir)init.js" "$(TargetDir)init.js"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Library Include="lglcd.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="g15-chat.h" />
+    <ClInclude Include="LCDUI\LCDAnimatedBitmap.h" />
+    <ClInclude Include="LCDUI\LCDBase.h" />
+    <ClInclude Include="LCDUI\LCDBitmap.h" />
+    <ClInclude Include="LCDUI\LCDCollection.h" />
+    <ClInclude Include="LCDUI\LCDColorProgressBar.h" />
+    <ClInclude Include="LCDUI\LCDColorText.h" />
+    <ClInclude Include="LCDUI\LCDConnection.h" />
+    <ClInclude Include="LCDUI\LCDGfxBase.h" />
+    <ClInclude Include="LCDUI\LCDGfxColor.h" />
+    <ClInclude Include="LCDUI\LCDGfxMono.h" />
+    <ClInclude Include="LCDUI\LCDIcon.h" />
+    <ClInclude Include="LCDUI\LCDOutput.h" />
+    <ClInclude Include="LCDUI\LCDPage.h" />
+    <ClInclude Include="LCDUI\LCDPaginateText.h" />
+    <ClInclude Include="LCDUI\LCDPopup.h" />
+    <ClInclude Include="LCDUI\LCDProgressBar.h" />
+    <ClInclude Include="LCDUI\LCDScrollingText.h" />
+    <ClInclude Include="LCDUI\LCDSkinnedProgressBar.h" />
+    <ClInclude Include="LCDUI\LCDStreamingText.h" />
+    <ClInclude Include="LCDUI\LCDText.h" />
+    <ClInclude Include="LCDUI\LCDUI.h" />
+    <ClInclude Include="lglcd.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="g15-chat.cpp" />
+    <ClCompile Include="LCDUI\LCDAnimatedBitmap.cpp" />
+    <ClCompile Include="LCDUI\LCDBase.cpp" />
+    <ClCompile Include="LCDUI\LCDBitmap.cpp" />
+    <ClCompile Include="LCDUI\LCDCollection.cpp" />
+    <ClCompile Include="LCDUI\LCDColorProgressBar.cpp" />
+    <ClCompile Include="LCDUI\LCDColorText.cpp" />
+    <ClCompile Include="LCDUI\LCDConnection.cpp" />
+    <ClCompile Include="LCDUI\LCDGfxBase.cpp" />
+    <ClCompile Include="LCDUI\LCDGfxColor.cpp" />
+    <ClCompile Include="LCDUI\LCDGfxMono.cpp" />
+    <ClCompile Include="LCDUI\LCDIcon.cpp" />
+    <ClCompile Include="LCDUI\LCDOutput.cpp" />
+    <ClCompile Include="LCDUI\LCDPage.cpp" />
+    <ClCompile Include="LCDUI\LCDPaginateText.cpp" />
+    <ClCompile Include="LCDUI\LCDPopup.cpp" />
+    <ClCompile Include="LCDUI\LCDProgressBar.cpp" />
+    <ClCompile Include="LCDUI\LCDScrollingText.cpp" />
+    <ClCompile Include="LCDUI\LCDSkinnedProgressBar.cpp" />
+    <ClCompile Include="LCDUI\LCDStreamingText.cpp" />
+    <ClCompile Include="LCDUI\LCDText.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="g15-chat.def" />
+    <None Include="init.js">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

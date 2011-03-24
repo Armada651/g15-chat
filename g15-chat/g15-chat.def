@@ -1,0 +1,6 @@
+LIBRARY g15-chat
+
+EXPORTS
+LcdInit           @1
+LcdClose          @2
+LcdPrint          @3
