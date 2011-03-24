@@ -82,7 +82,7 @@
       <AdditionalDependencies>lglcd.lib;gdiplus.lib;Msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)init.js" "$(TargetDir)init.js"</Command>
+      <Command>copy /Y "$(ProjectDir)init.js" "$(TargetDir)init.js"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
