@@ -1,3 +1,10 @@
+/*
+ * TODO:
+ * - Implement history function
+ * - Make code thread-safe
+ * - Vertical (and horizontal?) scrolling with softbuttons
+ */
+
 #include <string.h>
 #include "LCDUI.h"
 #include "g15-chat.h"
