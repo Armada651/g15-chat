@@ -18,10 +18,8 @@ function _init(glob) {
 plugin.enable =
 function _enable() {
 	// Open the G15-Chat library
-	var path = decodeURI(plugin.cwd.substr(8)) + "g15-chat.dll"; //Substr to remove file:///
 	Components.utils.import("resource://gre/modules/ctypes.jsm");
-	client.display("Opening library: " + path);
-	LcdLib = ctypes.open(path);
+	LcdLib = ctypes.open(decodeURI(plugin.cwd.substr(8)) + "g15-chat.dll"); //Substr to remove file:///
 	LcdInit = LcdLib.declare("LcdInit", ctypes.default_abi, ctypes.int, ctypes.jschar.ptr); // Returns: int Params: w_char*
 	LcdClose = LcdLib.declare("LcdClose", ctypes.default_abi, ctypes.void_t); // Returns: void Params: void
 	LcdPrint = LcdLib.declare("LcdPrint", ctypes.default_abi, ctypes.void_t, ctypes.jschar.ptr); // Returns: void Params: w_char*
