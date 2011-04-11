@@ -1,4 +1,4 @@
-plugin.id = "gfifteen-chat";
+plugin.id = "g15-chat";
 
 var LcdLib;
 var LcdInit;
