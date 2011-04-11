@@ -8,7 +8,7 @@ var LcdPrint;
 plugin.init =
 function _init(glob) {
 	this.major = 0;  // Major version number.
-	this.minor = 1;  // Minor version number.
+	this.minor = 5;  // Minor version number.
 	this.version = this.major + "." + this.minor;
 	this.description = "G15 LCD display plugin";
 	
