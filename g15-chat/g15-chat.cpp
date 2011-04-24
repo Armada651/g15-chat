@@ -12,14 +12,15 @@
 
 #define LINES 4
 
-CLCDConnection Connection;
-CLCDPage monoPage;
-CLCDText Lines[LINES];
-WCHAR* Strings[LINES];
-UCHAR FirstLine;
+CLCDConnection Connection; // The connection
+CLCDPage monoPage; // The page
+CLCDText Lines[LINES]; // The text lines on the page
+wchar_t* Strings[LINES]; // Buffer with strings printed
+unsigned char FirstLine; // Indicates the newest line in the buffer
 
-int __stdcall LcdInit( WCHAR* name )
+int __stdcall LcdInit( wchar_t* name )
 {
+	// Set up the connection context
     lgLcdConnectContextEx ConnectCtx;
 
 	ConnectCtx.appFriendlyName = name;
@@ -31,15 +32,16 @@ int __stdcall LcdInit( WCHAR* name )
     ConnectCtx.onNotify.notificationCallback = NULL;
     ConnectCtx.onNotify.notifyContext = NULL;
 
+	// Initialize the connection, if it fails return errorcode 1
 	if(Connection.Initialize(ConnectCtx) == FALSE)
 	{
 		return 1;
 	}
 
+	// Select monochrome output
 	CLCDOutput* monoOutput = Connection.MonoOutput();
 
-	monoOutput->ShowPage(&monoPage);
-	
+	//Initialize the text lines and add them to the page
 	FirstLine = 0;
 	memset(Strings, NULL, sizeof(Strings));
 	for(int i=0; i<LINES; i++)
@@ -53,6 +55,8 @@ int __stdcall LcdInit( WCHAR* name )
 		monoPage.AddObject(&Lines[i]);
 	}
 
+	//Show the page and update the display
+	monoOutput->ShowPage(&monoPage);
 	Connection.Update();
 
 	return 0;
@@ -60,25 +64,34 @@ int __stdcall LcdInit( WCHAR* name )
 
 void __stdcall LcdClose( void )
 {
+	// Close the connection
     Connection.Shutdown();
 }
 
-void __stdcall LcdPrint( WCHAR* text )
+void __stdcall LcdPrint( wchar_t* text )
 {
+	// If the new starting position already has a string, free the memory
 	if(Strings[FirstLine] != NULL) free(Strings[FirstLine]);
+
+	// Allocate memory and copy the given string into it
 	Strings[FirstLine] = (WCHAR*)malloc(sizeof(WCHAR) * (wcslen(text)+1));
 	wcscpy(Strings[FirstLine], text);
 	
-	int j = FirstLine;
-	for(int i=LINES-1; i>=0; i--)
+	// Set the text lines from oldest (top) to newest (bottom)
+	for(int i=LINES-1, int j=FirstLine; i>=0; i--, j--)
 	{
+		// Set the line
 		Lines[i].SetText(Strings[j]);
-		j--;
-		if(j<0) j=LINES-1;
+
+		// Wrap around the buffer
+		if(j==0) j=LINES-1;
 	}
 	
+	// Increase the Read/Write pointer
 	FirstLine++;
+	//Wrap around the buffer
 	FirstLine%=LINES;
 
+	// Update the display
 	Connection.Update();
 }
