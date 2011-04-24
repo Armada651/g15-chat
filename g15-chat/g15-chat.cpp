@@ -78,7 +78,7 @@ void __stdcall LcdPrint( wchar_t* text )
 	wcscpy(Strings[FirstLine], text);
 	
 	// Set the text lines from oldest (top) to newest (bottom)
-	for(int i=LINES-1, int j=FirstLine; i>=0; i--, j--)
+	for(int i=LINES-1, j=FirstLine; i>=0; i--, j--)
 	{
 		// Set the line
 		Lines[i].SetText(Strings[j]);
