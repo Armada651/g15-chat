@@ -1,7 +1,8 @@
 /*
  * TODO:
- * - Implement history function
  * - Make code thread-safe
+ * MIGHTDO:
+ * - Implement history function
  * - Vertical (and horizontal?) scrolling with softbuttons
  */
 
