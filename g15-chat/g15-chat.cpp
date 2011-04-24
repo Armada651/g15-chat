@@ -80,11 +80,11 @@ void __stdcall LcdPrint( wchar_t* text )
 	// Set the text lines from oldest (top) to newest (bottom)
 	for(int i=LINES-1, j=FirstLine; i>=0; i--, j--)
 	{
+		// Wrap around the buffer
+		if(j<0) j=LINES-1;
+
 		// Set the line
 		Lines[i].SetText(Strings[j]);
-
-		// Wrap around the buffer
-		if(j==0) j=LINES-1;
 	}
 	
 	// Increase the Read/Write pointer
