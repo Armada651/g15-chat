@@ -6,8 +6,6 @@ var LcdClose;
 var LcdPrint;
 
 var ColorFilter = new RegExp("\\x1f|\\x02|\\x12|\\x0f|\\x16|\\x03(?:\\d{1,2}(?:,\\d{1,2})?)?", "g");
-var LastUser;
-var LastPrivateUser;
 
 plugin.init =
 function _init(glob) {
@@ -59,9 +57,7 @@ function _disable() {
 
 function hookMessage(e) {
     try {
-        if (LastUser == e.user) LcdPrint(e.msg.replace(ColorFilter, ""));
-        else LcdPrint("<" + e.user.unicodeName.replace(ColorFilter, "") + ">" + e.msg.replace(ColorFilter, ""));
-        LastUser = e.user;
+        LcdPrint("<" + e.user.unicodeName.replace(ColorFilter, "") + ">" + e.msg.replace(ColorFilter, ""));
     } catch (ex) {
         // We should never let exceptions get out of a hook, or bad things happen.
     }
@@ -77,9 +73,7 @@ function hookAction(e) {
 
 function hookPrivate(e) {
     try {
-        if (LastPrivateUser == e.user) LcdPrint(e.msg.replace(ColorFilter, ""));
-        else LcdPrint("{" + e.user.unicodeName.replace(ColorFilter, "") + "}" + e.msg.replace(ColorFilter, ""));
-        LastPrivateUser = e.user;
+        LcdPrint("{" + e.user.unicodeName.replace(ColorFilter, "") + "}" + e.msg.replace(ColorFilter, ""));
     } catch (ex) {
         // We should never let exceptions get out of a hook, or bad things happen.
     }
