@@ -1,7 +1,5 @@
 /*
  * TODO:
- * - Make code thread-safe
- * MIGHTDO:
  * - Implement history function
  * - Vertical (and horizontal?) scrolling with softbuttons
  */
@@ -70,6 +68,11 @@ void __declspec(dllexport) LcdClose( void )
 
 void __declspec(dllexport) LcdPrint( wchar_t* text )
 {
+	// Increase starting position
+	FirstLine++;
+	//Wrap around the buffer
+	FirstLine%=LINES;
+
 	// If the new starting position already has a string, free the memory
 	if(Strings[FirstLine] != NULL) free(Strings[FirstLine]);
 
@@ -86,11 +89,6 @@ void __declspec(dllexport) LcdPrint( wchar_t* text )
 		// Set the line
 		Lines[i].SetText(Strings[j]);
 	}
-	
-	// Increase the Read/Write pointer
-	FirstLine++;
-	//Wrap around the buffer
-	FirstLine%=LINES;
 
 	// Update the display
 	Connection.Update();
