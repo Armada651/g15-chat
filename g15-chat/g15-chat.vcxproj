@@ -137,7 +137,6 @@
     <ClCompile Include="LCDUI\LCDText.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="g15-chat.def" />
     <None Include="init.js">
       <DeploymentContent>false</DeploymentContent>
     </None>
