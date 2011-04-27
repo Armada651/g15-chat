@@ -16,7 +16,7 @@ CLCDText Lines[LINES]; // The text lines on the page
 wchar_t* Strings[LINES]; // Buffer with strings printed
 unsigned char FirstLine; // Indicates the newest line in the buffer
 
-int __declspec(dllexport) LcdInit( wchar_t* name )
+int LcdInit( wchar_t* name )
 {
 	// Set up the connection context
     lgLcdConnectContextEx ConnectCtx;
@@ -60,13 +60,13 @@ int __declspec(dllexport) LcdInit( wchar_t* name )
 	return 0;
 }
 
-void __declspec(dllexport) LcdClose( void )
+void LcdClose( void )
 {
 	// Close the connection
     Connection.Shutdown();
 }
 
-void __declspec(dllexport) LcdPrint( wchar_t* text )
+void LcdPrint( wchar_t* text )
 {
 	// Increase starting position
 	FirstLine++;
