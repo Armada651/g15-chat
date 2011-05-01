@@ -1,5 +1,6 @@
 /*
  * TODO:
+ * - Make thread-safe
  * - Implement history function
  * - Vertical (and horizontal?) scrolling with softbuttons
  */
@@ -18,6 +19,9 @@ unsigned char FirstLine; // Indicates the newest line in the buffer
 
 int LcdInit( wchar_t* name )
 {
+	// Check if already connected
+	if(Connection.IsConnected()) return 2;
+
 	// Set up the connection context
     lgLcdConnectContextEx ConnectCtx;
 
@@ -62,8 +66,8 @@ int LcdInit( wchar_t* name )
 
 void LcdClose( void )
 {
-	// Close the connection
-    Connection.Shutdown();
+	// Close the connection if connected
+    if(Connection.IsConnected()) Connection.Shutdown();
 }
 
 void LcdPrint( wchar_t* text )
@@ -77,7 +81,7 @@ void LcdPrint( wchar_t* text )
 	if(Strings[FirstLine] != NULL) free(Strings[FirstLine]);
 
 	// Allocate memory and copy the given string into it
-	Strings[FirstLine] = (WCHAR*)malloc(sizeof(WCHAR) * (wcslen(text)+1));
+	Strings[FirstLine] = (wchar_t*)malloc(sizeof(wchar_t) * (wcslen(text)+1));
 	wcscpy(Strings[FirstLine], text);
 	
 	// Set the text lines from oldest (top) to newest (bottom)
