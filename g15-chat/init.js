@@ -25,8 +25,8 @@ function _enable() {
     LcdLib = ctypes.open(path); //Substr to remove file:///
     display("G15 Chat DLL loaded from " + path);
     LcdInit = LcdLib.declare("LcdInit", ctypes.default_abi, ctypes.int, ctypes.jschar.ptr); // Returns: int Params: wchar_t*
-    LcdClose = LcdLib.declare("LcdClose", ctypes.default_abi, ctypes.void_t); // Returns: void Params: void
-    LcdPrint = LcdLib.declare("LcdPrint", ctypes.default_abi, ctypes.void_t, ctypes.jschar.ptr); // Returns: void Params: wchar_t*
+    LcdClose = LcdLib.declare("LcdClose", ctypes.default_abi, ctypes.int); // Returns: void Params: void
+    LcdPrint = LcdLib.declare("LcdPrint", ctypes.default_abi, ctypes.int, ctypes.jschar.ptr); // Returns: void Params: wchar_t*
 
     // Connect to the LCD display
     var ret = LcdInit("ChatZilla");

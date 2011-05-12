@@ -1,10 +1,10 @@
 /*
  * TODO:
- * - Make thread-safe
  * - Implement history function
  * - Vertical (and horizontal?) scrolling with softbuttons
  */
 
+#include <Windows.h>
 #include <string.h>
 #include "LCDUI.h"
 #include "g15-chat.h"
@@ -12,15 +12,19 @@
 #define LINES 4
 
 CLCDConnection Connection; // The connection
-CLCDPage monoPage; // The page
+CLCDPage MonoPage; // The page
 CLCDText Lines[LINES]; // The text lines on the page
 wchar_t* Strings[LINES]; // Buffer with strings printed
 unsigned char FirstLine; // Indicates the newest line in the buffer
+HANDLE hMutex; // Thread-safety mutex
 
 int LcdInit( wchar_t* name )
 {
 	// Check if already connected
-	if(Connection.IsConnected()) return 2;
+	if(Connection.IsConnected()) return 1;
+
+	// Create the mutex
+	hMutex = CreateMutex(NULL, true, NULL);
 
 	// Set up the connection context
     lgLcdConnectContextEx ConnectCtx;
@@ -34,16 +38,19 @@ int LcdInit( wchar_t* name )
     ConnectCtx.onNotify.notificationCallback = NULL;
     ConnectCtx.onNotify.notifyContext = NULL;
 
-	// Initialize the connection, if it fails return errorcode 1
+	// Initialize the connection
 	if(Connection.Initialize(ConnectCtx) == FALSE)
 	{
-		return 1;
+		// Destroy the mutex
+		CloseHandle(hMutex);
+		
+		return 2;
 	}
 
 	// Select monochrome output
 	CLCDOutput* monoOutput = Connection.MonoOutput();
 
-	//Initialize the text lines and add them to the page
+	// Initialize the text lines and add them to the page
 	FirstLine = 0;
 	memset(Strings, NULL, sizeof(Strings));
 	for(int i=0; i<LINES; i++)
@@ -54,24 +61,44 @@ int LcdInit( wchar_t* name )
 		Lines[i].SetFontFaceName(_T("Microsoft Sans Serif"));
 		Lines[i].SetFontWeight(4);
 		Lines[i].SetFontPointSize(7);
-		monoPage.AddObject(&Lines[i]);
+		MonoPage.AddObject(&Lines[i]);
 	}
 
-	//Show the page and update the display
-	monoOutput->ShowPage(&monoPage);
+	// Show the page and update the display
+	monoOutput->ShowPage(&MonoPage);
 	Connection.Update();
+
+	// Release the mutex
+	ReleaseMutex(hMutex);
 
 	return 0;
 }
 
-void LcdClose( void )
+int LcdClose( void )
 {
-	// Close the connection if connected
-    if(Connection.IsConnected()) Connection.Shutdown();
+	// Check if connected
+    if(!Connection.IsConnected()) return 1;
+	
+	// Acquire the mutex
+	if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT) return 2;
+
+	// Close the connection
+	Connection.Shutdown();
+
+	// Destroy the mutex
+	CloseHandle(hMutex);
+
+	return 0;
 }
 
-void LcdPrint( wchar_t* text )
+int LcdPrint( wchar_t* text )
 {
+	// Check if connected
+    if(!Connection.IsConnected()) return 1;
+
+	// Acquire the mutex
+	if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT) return 2;
+
 	// Increase starting position
 	FirstLine++;
 	//Wrap around the buffer
@@ -96,4 +123,9 @@ void LcdPrint( wchar_t* text )
 
 	// Update the display
 	Connection.Update();
+
+	// Release the mutex
+	ReleaseMutex(hMutex);
+
+	return 0;
 }
