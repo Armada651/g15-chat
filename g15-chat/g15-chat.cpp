@@ -1,6 +1,6 @@
 /*
  * TODO:
- * - Implement history function
+ * - Increase the string buffer so older messages can be read
  * - Vertical (and horizontal?) scrolling with softbuttons
  */
 
