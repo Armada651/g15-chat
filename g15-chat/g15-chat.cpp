@@ -108,8 +108,9 @@ int LcdPrint( wchar_t* text )
 	if(Strings[FirstLine] != NULL) free(Strings[FirstLine]);
 
 	// Allocate memory and copy the given string into it
-	Strings[FirstLine] = (wchar_t*)malloc(sizeof(wchar_t) * (wcslen(text)+1));
-	wcscpy(Strings[FirstLine], text);
+	int size = wcslen(text) + 1; // Extra element for the NULL character
+	Strings[FirstLine] = (wchar_t*)malloc(sizeof(wchar_t) * size);
+	wcscpy_s(Strings[FirstLine], size, text);
 	
 	// Set the text lines from oldest (top) to newest (bottom)
 	for(int i=LINES-1, j=FirstLine; i>=0; i--, j--)
