@@ -10,7 +10,7 @@ var ColorFilter = new RegExp("\\x1f|\\x02|\\x12|\\x0f|\\x16|\\x03(?:\\d{1,2}(?:,
 plugin.init =
 function _init(glob) {
     this.major = 0;  // Major version number.
-    this.minor = 1;  // Minor version number.
+    this.minor = 2;  // Minor version number.
     this.version = this.major + "." + this.minor;
     this.description = "ChatZilla G15 Display Plugin";
 
