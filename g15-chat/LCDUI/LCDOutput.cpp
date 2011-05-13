@@ -42,7 +42,7 @@ CLCDOutput::CLCDOutput(void)
 
 CLCDOutput::~CLCDOutput(void)
 {
-    Shutdown();
+    //Shutdown(); Correctly disconnecting will create a deadlock in some cases.
 }
 
 
