@@ -49,8 +49,7 @@ function _disable() {
     client.eventPump.removeHookByName(this.id + "-hook-action");
     client.eventPump.removeHookByName(this.id + "-hook-privaction");
 
-    // Close the connection and the library
-    // If these functions aren't called firefox will lock up
+    // Gracefully close the connection and the library
     LcdClose();
     LcdLib.close();
 
