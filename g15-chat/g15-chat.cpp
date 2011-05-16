@@ -165,6 +165,7 @@ int LcdDraw( void )
 			if(Offset < len) Lines[i].SetText(Strings[j]+Offset);
 			else Lines[i].SetText(L"");
 		}
+		else Lines[i].SetText(L"");
 	}
 
 	// Update the display
