@@ -25,6 +25,7 @@ int LcdInit( wchar_t* name )
 
 	// Create the mutex
 	hMutex = CreateMutex(NULL, true, NULL);
+	if(hMutex == NULL) return 3;
 
 	// Set up the connection context
     lgLcdConnectContextEx ConnectCtx;
