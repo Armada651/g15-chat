@@ -45,7 +45,7 @@ CLCDConnection::CLCDConnection(void)
 
 CLCDConnection::~CLCDConnection(void)
 {
-    //Disconnect(); Correctly disconnecting will create a deadlock.
+    //Disconnect(); Disconnecting here will create a deadlock.
 
     FreeMonoOutput();
     FreeColorOutput();
