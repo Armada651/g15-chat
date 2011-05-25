@@ -1,10 +1,12 @@
 plugin.id = "g15-chat";
 
+// The library and it's functions
 var LcdLib;
 var LcdInit;
 var LcdClose;
 var LcdPrint;
 
+// A regular expression to filter the non-printable color characters
 var ColorFilter = new RegExp("\\x1f|\\x02|\\x12|\\x0f|\\x16|\\x03(?:\\d{1,2}(?:,\\d{1,2})?)?", "g");
 
 plugin.init =
