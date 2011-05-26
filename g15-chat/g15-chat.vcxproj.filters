@@ -100,7 +100,6 @@
     <None Include="init.js">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="README.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LCDUI\LCDGfxMono.cpp">
