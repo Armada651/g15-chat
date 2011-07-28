@@ -1,16 +1,21 @@
 plugin.id = "g15-chat";
 
+// Function pointers
 var LcdLib;
 var LcdInit;
 var LcdClose;
 var LcdPrint;
 
+// Filter for colorcodes, useless for a monochrome display
 var ColorFilter = new RegExp("\\x1f|\\x02|\\x12|\\x0f|\\x16|\\x03(?:\\d{1,2}(?:,\\d{1,2})?)?", "g");
+
+// Last channel where messages were received
+var lastChannel;
 
 plugin.init =
 function _init(glob) {
     this.major = 0;  // Major version number.
-    this.minor = 3;  // Minor version number.
+    this.minor = 4;  // Minor version number.
     this.version = this.major + "." + this.minor;
     this.description = "ChatZilla G15 Display Plugin";
 
@@ -58,7 +63,12 @@ function _disable() {
 
 function hookMessage(e) {
     try {
-        LcdPrint("<" + e.user.unicodeName.replace(ColorFilter, "") + ">" + e.msg.replace(ColorFilter, ""));
+        // If this message is from another channel, print the channel name
+        if (e.channel != lastChannel) LcdPrint(e.channel.unicodeName);
+        lastChannel = e.channel;
+
+        // Print the message
+        LcdPrint("<" + e.user.unicodeName + ">" + e.msg.replace(ColorFilter, ""));
     } catch (ex) {
         // We should never let exceptions get out of a hook, or bad things happen.
     }
@@ -66,7 +76,12 @@ function hookMessage(e) {
 
 function hookAction(e) {
     try {
-        LcdPrint(e.user.unicodeName.replace(ColorFilter, "") + " " + e.CTCPData.replace(ColorFilter, ""));
+        // If this message is from another channel, print the channel name
+        if (e.channel != lastChannel) LcdPrint(e.channel.unicodeName);
+        lastChannel = e.channel;
+
+        // Print the message
+        LcdPrint(e.user.unicodeName + " " + e.CTCPData.replace(ColorFilter, ""));
     } catch (ex) {
         // We should never let exceptions get out of a hook, or bad things happen.
     }
@@ -74,7 +89,8 @@ function hookAction(e) {
 
 function hookPrivate(e) {
     try {
-        LcdPrint("{" + e.user.unicodeName.replace(ColorFilter, "") + "}" + e.msg.replace(ColorFilter, ""));
+        // Print the message
+        LcdPrint("{" + e.user.unicodeName + "}" + e.msg.replace(ColorFilter, ""));
     } catch (ex) {
         // We should never let exceptions get out of a hook, or bad things happen.
     }
