@@ -1,18 +1,16 @@
 plugin.id = "g15-chat";
 
-// The library and it's functions
 var LcdLib;
 var LcdInit;
 var LcdClose;
 var LcdPrint;
 
-// A regular expression to filter the non-printable color characters
 var ColorFilter = new RegExp("\\x1f|\\x02|\\x12|\\x0f|\\x16|\\x03(?:\\d{1,2}(?:,\\d{1,2})?)?", "g");
 
 plugin.init =
 function _init(glob) {
     this.major = 0;  // Major version number.
-    this.minor = 2;  // Minor version number.
+    this.minor = 3;  // Minor version number.
     this.version = this.major + "." + this.minor;
     this.description = "ChatZilla G15 Display Plugin";
 
@@ -26,12 +24,12 @@ function _enable() {
     var path = decodeURI(plugin.cwd.substr(8)) + "g15-chat.dll";
     LcdLib = ctypes.open(path); //Substr to remove file:///
     display("G15 Chat DLL loaded from " + path);
-    LcdInit = LcdLib.declare("LcdInit", ctypes.default_abi, ctypes.int, ctypes.jschar.ptr); // Returns: int Params: wchar_t*
-    LcdClose = LcdLib.declare("LcdClose", ctypes.default_abi, ctypes.int); // Returns: void Params: void
-    LcdPrint = LcdLib.declare("LcdPrint", ctypes.default_abi, ctypes.int, ctypes.jschar.ptr); // Returns: void Params: wchar_t*
+    LcdInit = LcdLib.declare("LcdInit", ctypes.default_abi, ctypes.int, ctypes.jschar.ptr, ctypes.unsigned_int); // Returns: int Params: wchar_t*, uint
+    LcdClose = LcdLib.declare("LcdClose", ctypes.default_abi, ctypes.int); // Returns: void Params: int
+    LcdPrint = LcdLib.declare("LcdPrint", ctypes.default_abi, ctypes.int, ctypes.jschar.ptr); // Returns: int Params: wchar_t*
 
-    // Connect to the LCD display
-    var ret = LcdInit("ChatZilla");
+    // Connect to the LCD display with a history size of 100
+    var ret = LcdInit("ChatZilla", 100);
     if (ret != 0) return false; // Failed to connect
 
     // Add our message hooks

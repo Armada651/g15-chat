@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "g15-chat", "g15-chat\g15-chat.vcxproj", "{FA4C9523-8D79-45A3-8532-524B3D49E34C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "g15-test", "g15-test\g15-test.vcxproj", "{5F80636F-7C20-4FC7-A619-CC5B1EE27E06}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -17,6 +19,10 @@ Global
 		{FA4C9523-8D79-45A3-8532-524B3D49E34C}.Debug|Win32.Build.0 = Debug|Win32
 		{FA4C9523-8D79-45A3-8532-524B3D49E34C}.Release|Win32.ActiveCfg = Release|Win32
 		{FA4C9523-8D79-45A3-8532-524B3D49E34C}.Release|Win32.Build.0 = Release|Win32
+		{5F80636F-7C20-4FC7-A619-CC5B1EE27E06}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5F80636F-7C20-4FC7-A619-CC5B1EE27E06}.Debug|Win32.Build.0 = Debug|Win32
+		{5F80636F-7C20-4FC7-A619-CC5B1EE27E06}.Release|Win32.ActiveCfg = Release|Win32
+		{5F80636F-7C20-4FC7-A619-CC5B1EE27E06}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
