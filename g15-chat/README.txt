@@ -1,6 +1,6 @@
 ChatZilla G15 Display Plugin
 Author: Jules Blok (jules@aerix.nl)
-Version: 0.3
+Version: 0.4
 
 - Description
 
@@ -27,5 +27,6 @@ addressing bugs in ChatZilla.
 
 - Version History
 
+Version 0.4 - Shows channel names
 Version 0.3 - Added scrolling and history feature
 Version 0.2 - Fixed deadlock on system shutdown
