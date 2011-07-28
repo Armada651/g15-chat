@@ -145,6 +145,7 @@
     <None Include="init.js">
       <DeploymentContent>false</DeploymentContent>
     </None>
+    <None Include="README.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
