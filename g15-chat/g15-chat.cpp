@@ -304,8 +304,8 @@ int LcdDraw( void )
 		// Display the string
 		if(*current != NULL)
 		{
-			unsigned int len = wcslen(*current);
-			if(offset < len) lines[i].SetText(*current+offset);
+			// Start printing the string starting from the offset
+			if(offset < wcslen(*current)) lines[i].SetText(*current+offset);
 			else lines[i].SetText(L"");
 		}
 		else lines[i].SetText(L"");
