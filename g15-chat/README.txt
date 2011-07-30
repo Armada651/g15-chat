@@ -23,8 +23,8 @@ snap back to the most recent message upon release.
 
 Logitech for the G15 Applet SDK.
 
-Silver (James Ross) for explaining Chatzilla plugin development and quickly
-addressing bugs in ChatZilla.
+Silver (James Ross) for explaining ChatZilla plugin development and quickly
+addressing bugs.
 
 - Version History
 
