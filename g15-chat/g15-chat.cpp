@@ -14,7 +14,7 @@ wchar_t** strings; // Buffer with strings printed
 wchar_t** writePtr; // Points to the string in the buffer to write
 wchar_t** readPtr; // Points to the string in the buffer to read
 unsigned int history; // Size of strings buffer
-int offset; // Offset int the string to start drawing (horizontal scrolling)
+unsigned int offset; // Offset int the string to start drawing (horizontal scrolling)
 
 time_t lastPress; // Time since last butten press
 
