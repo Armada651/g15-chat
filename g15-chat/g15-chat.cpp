@@ -26,11 +26,11 @@ VOID CALLBACK OnResetCallback(LPVOID lpArgToCompletionRoutine,DWORD dwTimerLowVa
 	WaitForSingleObject(hMutex, 10000);
 
 	// Reset scrolling
-    readPtr = writePtr;
-    offset = 0;
+	readPtr = writePtr;
+	offset = 0;
 
-    // Update the display
-    LcdDraw();
+	// Update the display
+	LcdDraw();
 }
 
 DWORD CALLBACK OnLCDButtonsCallback(int device, DWORD dwButtons, const PVOID pContext)
@@ -38,16 +38,16 @@ DWORD CALLBACK OnLCDButtonsCallback(int device, DWORD dwButtons, const PVOID pCo
 	// Acquire the mutex
 	if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT) return 1;
 
-    // Set the timer to reset the display after one second
-    LARGE_INTEGER dueTime;
-    dueTime.QuadPart = -(RESET_DELAY);
-    SetWaitableTimer(hResetTimer, &dueTime, 0, OnResetCallback, NULL, FALSE);
+	// Set the timer to reset the display after one second
+	LARGE_INTEGER dueTime;
+	dueTime.QuadPart = -(RESET_DELAY);
+	SetWaitableTimer(hResetTimer, &dueTime, 0, OnResetCallback, NULL, FALSE);
 
 	switch(dwButtons)
 	{
 		case NULL: // Button released
 			{
-                CancelWaitableTimer(hResetTimer);
+				CancelWaitableTimer(hResetTimer);
 			}
 		break;
 		case LGLCDBUTTON_BUTTON0: // Up
@@ -162,17 +162,17 @@ int LcdInit( wchar_t* name, unsigned int historySize )
 	hResetTimer = CreateWaitableTimer(NULL, FALSE, NULL);
 
 	// Set up the connection and softbutton context
-    lgLcdConnectContextEx ConnectCtx;
+	lgLcdConnectContextEx ConnectCtx;
 	lgLcdSoftbuttonsChangedContext ButtonCtx;
 
 	ConnectCtx.appFriendlyName = name;
 	ConnectCtx.dwAppletCapabilitiesSupported = LGLCD_APPLET_CAP_BW;
-    ConnectCtx.isAutostartable = FALSE;
+	ConnectCtx.isAutostartable = FALSE;
 	ConnectCtx.isPersistent = FALSE;
-    ConnectCtx.onConfigure.configCallback = NULL;
-    ConnectCtx.onConfigure.configContext = NULL;
-    ConnectCtx.onNotify.notificationCallback = NULL;
-    ConnectCtx.onNotify.notifyContext = NULL;
+	ConnectCtx.onConfigure.configCallback = NULL;
+	ConnectCtx.onConfigure.configContext = NULL;
+	ConnectCtx.onNotify.notificationCallback = NULL;
+	ConnectCtx.onNotify.notifyContext = NULL;
 
 	ButtonCtx.softbuttonsChangedCallback = OnLCDButtonsCallback;
 
@@ -222,7 +222,7 @@ int LcdInit( wchar_t* name, unsigned int historySize )
 int LcdClose( void )
 {
 	// Check if connected
-    if(!connection.IsConnected()) return 1;
+	if(!connection.IsConnected()) return 1;
 	
 	// Acquire the mutex
 	if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT) return 2;
