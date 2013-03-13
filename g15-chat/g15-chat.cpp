@@ -5,6 +5,7 @@
 #include "g15-chat.h"
 
 #define LINES 4
+#define RESET_DELAY 2000 * 10000
 
 CLCDConnection connection; // The connection
 CLCDPage monoPage; // The page
@@ -16,29 +17,37 @@ wchar_t** readPtr; // Points to the string in the buffer to read
 unsigned int history; // Size of strings buffer
 unsigned int offset; // Offset int the string to start drawing (horizontal scrolling)
 
-time_t lastPress; // Time since last butten press
-
+HANDLE hResetTimer; // Timer that resets the display
 HANDLE hMutex; // Thread-safety mutex
+
+VOID CALLBACK OnResetCallback(LPVOID lpArgToCompletionRoutine,DWORD dwTimerLowValue,DWORD dwTimerHighValue)
+{
+	// Acquire the mutex
+	WaitForSingleObject(hMutex, 10000);
+
+	// Reset scrolling
+    readPtr = writePtr;
+    offset = 0;
+
+    // Update the display
+    LcdDraw();
+}
 
 DWORD CALLBACK OnLCDButtonsCallback(int device, DWORD dwButtons, const PVOID pContext)
 {
 	// Acquire the mutex
 	if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT) return 1;
 
+    // Set the timer to reset the display after one second
+    LARGE_INTEGER dueTime;
+    dueTime.QuadPart = -(RESET_DELAY);
+    SetWaitableTimer(hResetTimer, &dueTime, 0, OnResetCallback, NULL, FALSE);
+
 	switch(dwButtons)
 	{
 		case NULL: // Button released
 			{
-				// If the button was press for more than 2 seconds
-				if(time(NULL) - lastPress >= 2)
-				{
-					// Reset scrolling
-					readPtr = writePtr;
-					offset = 0;
-					
-					// Update the display
-					LcdDraw();
-				}
+                CancelWaitableTimer(hResetTimer);
 			}
 		break;
 		case LGLCDBUTTON_BUTTON0: // Up
@@ -136,9 +145,6 @@ DWORD CALLBACK OnLCDButtonsCallback(int device, DWORD dwButtons, const PVOID pCo
 	
 	// Release the mutex
 	ReleaseMutex(hMutex);
-
-	// Save time of last press
-	lastPress = time(NULL);
 	
 	return 0;
 }
@@ -151,6 +157,9 @@ int LcdInit( wchar_t* name, unsigned int historySize )
 	// Create the mutex
 	hMutex = CreateMutex(NULL, true, NULL);
 	if(hMutex == NULL) return 3;
+
+	// Create the display reset timer
+	hResetTimer = CreateWaitableTimer(NULL, FALSE, NULL);
 
 	// Set up the connection and softbutton context
     lgLcdConnectContextEx ConnectCtx;
