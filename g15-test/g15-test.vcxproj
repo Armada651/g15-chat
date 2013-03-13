@@ -85,6 +85,11 @@
   <ItemGroup>
     <ClCompile Include="test.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\g15-chat\g15-chat.vcxproj">
+      <Project>{fa4c9523-8d79-45a3-8532-524b3d49e34c}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
