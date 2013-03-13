@@ -1,0 +1,10 @@
+/Debug
+/Release
+/g15-chat/Debug
+/g15-chat/Release
+/g15-test/Debug
+/g15-chat/Release
+/ipch
+*.user
+*.sdf
+*.opensdf
